@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>modalWindow</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <button class="openBtn" v-on:click="toggleModal">開く</button>
+    <div class="modal" v-show="ifModal" v-on:click="toggleModal">
+      <div class="modal-content" v-on:click="toggleModal">
+        <h1>モーダルウィンドウ</h1>
+        <button v-on:click="toggleModal">閉じる</button>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  const vm = new Vue({
+    el: '#app',
+    data: {
+      ifModal: false,
+    },
+    methods: {
+      toggleModal() {
+        this.ifModal = !this.ifModal;
+      }
+    }
+  })
+</script>
+<style>
+  button {
+    cursor: pointer;
+  }
+  .openBtn {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .modal-content {
+    width: 50%;
+    background-color: white;
+    padding: 15px;
+    text-align: center;
+  }
+</style>
+</html>

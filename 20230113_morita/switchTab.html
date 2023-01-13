@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>switchTab</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app" class="tab">
+    <div class="tab-menu">
+      <p class="tab-menu_item" :class="menuActive1" v-on:click="switchTab1">タブ1</p>
+      <p class="tab-menu_item" :class="menuActive2" v-on:click="switchTab2">タブ2</p>
+      <p class="tab-menu_item" :class="menuActive3" v-on:click="switchTab3">タブ3</p>
+    </div>
+    <div class="tab-content">
+      <div class="tab-content_item" v-show="contentNum==1">コンテンツ1</div>
+      <div class="tab-content_item" v-show="contentNum==2">コンテンツ2</div>
+      <div class="tab-content_item" v-show="contentNum==3">コンテンツ3</div>
+    </div>
+  </div>
+</body>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      contentNum: 1,
+      menuActive1: 'active',
+      menuActive2: null,
+      menuActive3: null,
+    },
+    methods: {
+      switchTab1() {
+        this.contentNum = 1;
+        this.menuActive1 = 'active';
+        this.menuActive2 = null;
+        this.menuActive3 = null;
+      },
+      switchTab2() {
+        this.contentNum = 2;
+        this.menuActive1 = null;
+        this.menuActive2 = 'active';
+        this.menuActive3 = null;
+      },
+      switchTab3() {
+        this.contentNum = 3
+        this.menuActive1 = null;
+        this.menuActive2 = null;
+        this.menuActive3 = 'active';
+      },
+    }
+  })
+</script>
+<style>
+  .tab {
+    width: 600px;
+  }
+  .tab-menu {
+    display: flex;
+    width: 80%;
+  }
+  .tab-menu_item {
+    list-style: none;
+    margin: 0;
+    padding: 5px 20px;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    cursor: pointer;
+  }
+  .active {
+    color: white;
+    background-color: black;
+  }
+  .tab-content {
+    border: 1px solid black;
+    padding: 5px;
+    height: 100px;
+  }
+  .tab-content_item {
+    font-size: 20px;
+  }
+</style>
+</html>
